@@ -1,31 +1,27 @@
 name: Fix Android Project (v2)
 
 on:
-  workflow_dispatch: # manually trigger
+  workflow_dispatch:
 
 jobs:
   repair:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repo
       - uses: actions/checkout@v4
 
-      # 2️⃣ Setup Flutter stable channel
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
-      # 3️⃣ Reconstruct Android folder with v2 embedding
       - name: Reconstruct Android Folder (v2)
         run: |
           echo "Deleting existing android folder..."
           rm -rf android
           echo "Generating fresh Android folder with v2 embedding..."
-          flutter create . --platforms=android --org com.example --project-name=my_app --androidx
+          flutter create . --platforms=android --org com.example --project-name=my_app
 
-      # 4️⃣ Commit and push changes
       - name: Commit Changes
         run: |
           git config --global user.name "GitHub Action"
