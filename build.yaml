@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          sql:
+            dialects:
+              - sqlite
+      drift_dev|drift_dev:
+        enabled: true
+        generate_connect_constructor: true
+        options:
+          sql:
+            dialects:
+              - sqlite
